@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './component/Login';
+import Login from './component/login';
 import Register from './component/Register';
 import {HashRouter, Route, Switch} from "react-router-dom";
 

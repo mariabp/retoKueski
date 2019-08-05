@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-
-
-
 const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,27 +18,32 @@ const Login = props => {
         console.log(password);
     };
 
-    const login = async () => {
-       try {
-           const token = await fetch('/api/user/login',
+       function loging() {
+      // try {
+         fetch('/api/user/login',
                {
                    method: 'POST',
                    headers: { 'Content-Type': 'application/json' },
                    body: JSON.stringify({ email, password })
                }
-           )
-           console.log(token)
-           localStorage.setItem("token", JSON.stringify(token.user));
-       } catch (err) {
-           console.log(err);
-       }
-
+           ).then((response) => {
+             return response.json();
+             
+             console.log(response);
+           }).then((response) => {
+             console.log(response);
+             localStorage.setItem("token", JSON.stringify({token: response}));
+           })
+          //  console.log(token)
+    //   } catch (err) {
+        //   console.log(err);
+      // }
    };
 
 
 
+   console.log(loging);
   return(
-
     <Form>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Correo electrónico</Form.Label>
@@ -51,7 +53,7 @@ const Login = props => {
         <Form.Label>Contraseña</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="password" placeholder="Ingresa tu contraseña" />
       </Form.Group>
-      <Button onClick={login} variant="primary" type="submit">
+      <Button onClick={loging} variant="primary">
         Ingresar
       </Button>
 
