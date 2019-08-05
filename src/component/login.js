@@ -25,7 +25,7 @@ const Login = props => {
              return response.json();
            })
            .then((response) => {
-             console.log(response);
+             console.log("sesion activa");
              localStorage.setItem('token', JSON.stringify({token: response}));
             })
     };
@@ -39,9 +39,12 @@ const Login = props => {
             <Form.Label>Contraseña</Form.Label>
             <Form.Control onChange={handleChange} type='password' name='password' placeholder='Ingresa tu contraseña' />
         </Form.Group>
+        <Link to='/Home'>
         <Button onClick={login} variant='primary'>
         Ingresar
         </Button>
+        </Link>
+        
         <Button className='form-group text-center'>
         <Link to='/Register'>
                 No tienes una cuenta
