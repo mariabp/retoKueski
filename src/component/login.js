@@ -23,16 +23,19 @@ const Login = props => {
 
     const login = async () => {
        try {
-           await fetch('/api/user/login/',
+           const token = await fetch('/api/user/login',
                {
                    method: 'POST',
                    headers: { 'Content-Type': 'application/json' },
                    body: JSON.stringify({ email, password })
                }
            )
+           console.log(token)
+           localStorage.setItem("token", JSON.stringify(token.user));
        } catch (err) {
            console.log(err);
        }
+
    };
 
 

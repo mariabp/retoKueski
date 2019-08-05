@@ -8,7 +8,6 @@ import {Link} from 'react-router-dom';
 const Register = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
 
   const handleChange = (event) => {
         if (event.target.name === "email") {
@@ -17,21 +16,17 @@ const Register = props => {
         if (event.target.name === "password") {
             setPassword(event.target.value);
         }
-        if (event.target.name === "userName") {
-            setUserName(event.target.value);
-        }
-        console.log(userName);
         console.log(email);
         console.log(password);
     };
 
     const register = async () => {
        try {
-           await fetch('/api/user/register/',
+           await fetch('/api/user/register',
                {
                    method: 'POST',
                    headers: { 'Content-Type': 'application/json' },
-                   body: JSON.stringify({userName, email, password })
+                   body: JSON.stringify({email, password })
                }
            )
        } catch (err) {
@@ -44,11 +39,6 @@ const Register = props => {
   return(
 
     <Form>
-    <Form.Group controlId="formBasicEmail">
-      <Form.Label>Nombre de usuario</Form.Label>
-      <Form.Control  onChange={handleChange} type="text" name="userName" placeholder="Ingresa tu correo" />
-    </Form.Group>
-
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Correo electrónico</Form.Label>
         <Form.Control  onChange={handleChange} type="email" name="email" placeholder="Ingresa tu correo" />
