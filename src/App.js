@@ -1,9 +1,12 @@
 import React from 'react';
-import Login from './component/login';
+import Login from './component/Login';
 import Register from './component/Register';
 import {HashRouter, Route, Switch} from "react-router-dom";
 
 const App = ()=>{
+
+  const currentUser = localStorage.getItem('token');
+  console.log(currentUser);
 
   return(
     <HashRouter basename="/">
