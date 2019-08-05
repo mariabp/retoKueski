@@ -5,9 +5,10 @@ import {Link} from 'react-router-dom';
 
 
 
-const Login = props => {
+const Register = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
 
   const handleChange = (event) => {
         if (event.target.name === "email") {
@@ -16,18 +17,21 @@ const Login = props => {
         if (event.target.name === "password") {
             setPassword(event.target.value);
         }
-
+        if (event.target.name === "userName") {
+            setUserName(event.target.value);
+        }
+        console.log(userName);
         console.log(email);
         console.log(password);
     };
 
-    const login = async () => {
+    const register = async () => {
        try {
-           await fetch('/api/user/login/',
+           await fetch('/api/user/register/',
                {
                    method: 'POST',
                    headers: { 'Content-Type': 'application/json' },
-                   body: JSON.stringify({ email, password })
+                   body: JSON.stringify({userName, email, password })
                }
            )
        } catch (err) {
@@ -40,6 +44,11 @@ const Login = props => {
   return(
 
     <Form>
+    <Form.Group controlId="formBasicEmail">
+      <Form.Label>Nombre de usuario</Form.Label>
+      <Form.Control  onChange={handleChange} type="text" name="userName" placeholder="Ingresa tu correo" />
+    </Form.Group>
+
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Correo electrónico</Form.Label>
         <Form.Control  onChange={handleChange} type="email" name="email" placeholder="Ingresa tu correo" />
@@ -48,14 +57,14 @@ const Login = props => {
         <Form.Label>Contraseña</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="password" placeholder="Ingresa tu contraseña" />
       </Form.Group>
-      <Button onClick={login} variant="primary" type="submit">
-        Ingresar
+      <Button onClick={register} variant="primary" type="submit">
+        Registrate
       </Button>
 
       <Button className="form-group text-center">
-                           <Link to="/Register">
-                                   No tienes una cuenta
-                                   ¡Registrate!
+                           <Link to="/">
+
+                                   Ya tienes una cuenta
 
                            </Link>
                        </Button>
@@ -68,4 +77,4 @@ const Login = props => {
 }
 
 
- export default Login;
+ export default Register;
