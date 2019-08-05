@@ -27,9 +27,9 @@ const Login = props => {
                    body: JSON.stringify({ email, password })
                }
            ).then((response) => {
+
              return response.json();
-             
-             console.log(response);
+
            }).then((response) => {
              console.log(response);
              localStorage.setItem("token", JSON.stringify({token: response}));
