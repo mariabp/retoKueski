@@ -1,74 +1,54 @@
 import React, {useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-
-
-
-
 const Login = props => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleChange = (event) => {
-        if (event.target.name === "email") {
+ const [email, setEmail] = useState('');
+ const [password, setPassword] = useState('');
+ const handleChange = (event) => {
+        if (event.target.name === 'email') {
             setEmail(event.target.value);
         }
-        if (event.target.name === "password") {
+        if (event.target.name === 'password') {
             setPassword(event.target.value);
         }
-
         console.log(email);
         console.log(password);
     };
-
-    const login = async () => {
-       try {
-           const token = await fetch('/api/user/login',
+        function login() {
+         fetch('/api/user/login',
                {
                    method: 'POST',
                    headers: { 'Content-Type': 'application/json' },
                    body: JSON.stringify({ email, password })
                }
-           )
-           console.log(token)
-           localStorage.setItem("token", JSON.stringify(token.user));
-       } catch (err) {
-           console.log(err);
-       }
-
-   };
-
-
-
-  return(
-
+           ).then((response) => {
+             return response.json();
+           })
+           .then((response) => {
+             console.log(response);
+             localStorage.setItem('token', JSON.stringify({token: response}));
+            })
+    };
+    return(
     <Form>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Correo electrónico</Form.Label>
-        <Form.Control  onChange={handleChange} type="email" name="email" placeholder="Ingresa tu correo" />
-      </Form.Group>
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Contraseña</Form.Label>
-        <Form.Control onChange={handleChange} type="password" name="password" placeholder="Ingresa tu contraseña" />
-      </Form.Group>
-      <Button onClick={login} variant="primary" type="submit">
+        <Form.Group controlId='formBasicEmail'>
+            <Form.Label>Correo electrónico</Form.Label>
+            <Form.Control  onChange={handleChange} type='email' name='email' placeholder='Ingresa tu correo' />
+        </Form.Group>
+        <Form.Group controlId='formBasicPassword'>
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control onChange={handleChange} type='password' name='password' placeholder='Ingresa tu contraseña' />
+        </Form.Group>
+        <Button onClick={login} variant='primary'>
         Ingresar
-      </Button>
-
-      <Button className="form-group text-center">
-                           <Link to="/Register">
-                                   No tienes una cuenta
-                                   ¡Registrate!
-
-                           </Link>
-                       </Button>
+        </Button>
+        <Button className='form-group text-center'>
+        <Link to='/Register'>
+                No tienes una cuenta
+                ¡Registrate!
+        </Link>
+        </Button>
     </Form>
-
-
-
-  )
-
+    )
 }
-
-
- export default Login;
+export default Login;
