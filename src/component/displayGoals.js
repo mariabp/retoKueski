@@ -22,56 +22,97 @@ constructor() {
   this.fetchTasks = this.fetchTasks.bind(this);
 }
 
+const Styles = styled.div`
+  form {
+  background-color: #ffffff;
+  box-shadow: 7px 8px 7px rgba(3, 3, 3, 0.4);
+  margin: 2rem 1rem 1rem 1rem;
+  padding: 1rem;
 
-handleChange(e) {
-  const { name, value } = e.target;
-  this.setState({
-    [name]: value
-  });
-}
+  input {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom-width: 1px;
+    border-color: rgba(3, 3, 3, 0.4);
 
-addTask(e) {
-  e.preventDefault();
-  if(this.state._id) {
-    fetch(`/api/goals/${this.state._id}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        title: this.state.title,
-        motive: this.state.motive
-      }),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log("addTask",data)
-        this.setState({_id: '', title: '', motive: ''});
-        this.fetchTasks();
-      });
-  } else {
-    fetch('/api/goals', {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        this.setState({title: '', motive: ''});
-        this.fetchTasks();
-      })
-      .catch(err => console.error(err));
+    ::placeholder {
+      color: rgba(3, 3, 3, 0.4);
+    }
   }
 
-}
+  .motiveTextArea {
+    margin-bottom: 3rem;
+  }
 
-deleteTask(id) {
-  console.log(id)
+  .addGoalBtn {
+    display: block;
+    margin: auto;
+    padding: 1rem;
+    font-size: larger;
+    background-color: #083d77;
+    color: white;
+    border-radius: 3rem;
+    border: none;
+    width: 60%;
+  }
+
+  .goalsContainer {
+    display: block; 
+    margin: auto;
+  }
+
+`
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  addTask(e) {
+    e.preventDefault();
+    if (this.state._id) {
+      fetch(`/api/goals/${this.state._id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          title: this.state.title,
+          motive: this.state.motive
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log("addTask", data)
+          this.setState({ _id: '', title: '', motive: '' });
+          this.fetchTasks();
+        });
+    } else {
+      fetch('/api/goals', {
+        method: 'POST',
+        body: JSON.stringify(this.state),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          this.setState({ title: '', motive: '' });
+          this.fetchTasks();
+        })
+        .catch(err => console.error(err));
+    }
+
+  }
+
+  deleteTask(id) {
+    console.log(id)
     fetch(`/api/goals/${id}`, {
       method: 'DELETE',
       headers: {
@@ -84,25 +125,25 @@ deleteTask(id) {
         console.log(data);
         this.fetchTasks();
       })
-      // .catch(err)
+    // .catch(err)
   }
 
-editTask(id) {
-  fetch(`/api/goals/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      this.setState({
-        title: data.title,
-        motive: data.motive,
-        _id: data._id
+  editTask(id) {
+    fetch(`/api/goals/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          title: data.title,
+          motive: data.motive,
+          _id: data._id
+        });
       });
-    });
-}
+  }
 
-componentDidMount() {
-  this.fetchTasks();
-}
+  componentDidMount() {
+    this.fetchTasks();
+  }
 
 showGoal = (cardId) =>{
   this.setState({ 
@@ -146,7 +187,7 @@ render() {
                  {this.state.tasks.map(task => {
                     return (
                       <Card key={task._id}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
+                        <Card.Img variant="top" src="https://i.imgur.com/5OpceQ1.jpg" />
                         <Card.Body>
                           <Card.Title>{task.title}</Card.Title>
                           <Card.Text>
