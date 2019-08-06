@@ -10,15 +10,25 @@ constructor() {
     motive: '',
     date: '',
     _id: '',
-    tasks: []
+    tasks: [],
+    uid: ''
   };
   this.handleChange = this.handleChange.bind(this);
   this.addTask = this.addTask.bind(this);
   this.deleteTask = this.deleteTask.bind(this);
   this.editTask = this.editTask.bind(this);
   this.fetchTasks = this.fetchTasks.bind(this);
+  this.setUserId = this.setUserId.bind(this);
+
 }
 
+setUserId = () => {
+ const userId = JSON.parse(window.localStorage.getItem('uid'));
+ console.log('this is ' + userId);
+this.setState({
+  uid : userId
+})
+}
 
 handleChange(e) {
   const { name, value } = e.target;
@@ -29,12 +39,16 @@ handleChange(e) {
 
 addTask(e) {
   e.preventDefault();
+
   if(this.state._id) {
     fetch(`/api/goals/${this.state._id}`, {
       method: 'PUT',
       body: JSON.stringify({
         title: this.state.title,
-        motive: this.state.motive
+        motive: this.state.motive,
+        date: this.state.date,
+        uid: this.state.uid,
+
       }),
       headers: {
         'Accept': 'application/json',
@@ -44,7 +58,7 @@ addTask(e) {
       .then(res => res.json())
       .then(data => {
         console.log("addTask",data)
-        this.setState({_id: '', title: '', motive: ''});
+        this.setState({title: '', motive: ''});
         this.fetchTasks();
       });
   } else {
@@ -98,6 +112,7 @@ editTask(id) {
 }
 
 componentDidMount() {
+  this.setUserId();
   this.fetchTasks();
 }
 
