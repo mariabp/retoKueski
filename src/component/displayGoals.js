@@ -30,7 +30,7 @@ addTask(e) {
       method: 'PUT',
       body: JSON.stringify({
         title: this.state.title,
-        description: this.state.description
+        motive: this.state.motive
       }),
       headers: {
         'Accept': 'application/json',
@@ -40,7 +40,7 @@ addTask(e) {
       .then(res => res.json())
       .then(data => {
 
-        this.setState({_id: '', title: '', description: ''});
+        this.setState({_id: '', title: '', motive: ''});
         this.fetchTasks();
       });
   } else {
@@ -55,7 +55,6 @@ addTask(e) {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        window.M.toast({html: 'Task Saved'});
         this.setState({title: '', motive: ''});
         this.fetchTasks();
       })
@@ -64,23 +63,22 @@ addTask(e) {
 
 }
 
-// deleteTask(id) {
-//   if(confirm('Are you sure you want to delete it?')) {
-//     fetch(`/api/goals/${id}`, {
-//       method: 'DELETE',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         console.log(data);
-//         M.toast({html: 'Task deleted'});
-//         this.fetchTasks();
-//       });
-//   }
-// }
+deleteTask(id) {
+
+    fetch(`/api/goals/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.fetchTasks();
+      });
+
+}
 
 editTask(id) {
   fetch(`/api/goals/${id}`)
@@ -111,11 +109,11 @@ fetchTasks() {
 render() {
   return (
     <div>
-      <div className="container">
-        <div className="row">
-          <div className="col s5">
-            <div className="card">
-              <div className="card-content">
+      <div >
+        <div>
+          <div >
+            <div >
+              <div >
                 <form onSubmit={this.addTask}>
                   <div className="row">
                     <div className="input-field col s12">
@@ -151,11 +149,11 @@ render() {
                         <td>{task.title}</td>
                         <td>{task.motive}</td>
                         <td>
-                          <button onClick={() => this.deleteTask(task._id)} className="btn light-blue darken-4">
-                            <i className="material-icons">delete</i>
+                          <button onClick={() => this.deleteTask(task._id)}>
+                            <i>delete</i>
                           </button>
-                          <button onClick={() => this.editTask(task._id)} className="btn light-blue darken-4" style={{margin: '4px'}}>
-                            <i className="material-icons">edit</i>
+                          <button onClick={() => this.editTask(task._id)}>
+                            <i>edit</i>
                           </button>
                         </td>
                       </tr>
