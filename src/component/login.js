@@ -87,6 +87,7 @@ const Login = props => {
     console.log(email);
     console.log(password);
   };
+  
   function login() {
     fetch("/api/user/login", {
       method: "POST",

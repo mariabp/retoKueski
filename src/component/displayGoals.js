@@ -3,6 +3,8 @@ import {Form, Button, Container, Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
+import Goal from './Goal';
+
 
 const Styles = styled.div`
   form {
@@ -46,6 +48,7 @@ const Styles = styled.div`
 
 `
 class DisplayGoals extends Component{
+
 
 constructor() {
   super();
@@ -144,35 +147,46 @@ constructor() {
     this.fetchTasks();
   }
 
-  fetchTasks() {
-    fetch('/api/goals')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ tasks: data });
-        console.log(this.state.tasks);
-      });
-  }
+showGoal = (cardId) =>{
+  this.setState({ 
+    showingGoal : !this.state.showingGoal,
+    id : cardId
+   })
+}
 
-  render() {
+fetchTasks() {
+  fetch('/api/goals')
+    .then(res => res.json())
+    .then(data => {
+      this.setState({tasks: data});
+      console.log(this.state.tasks);
+    });
+}
+
+render() {
+  console.log("estado de showing",this.state.id)
+  if(this.state.showingGoal){
     return (
-      <Container>
-        <Styles>
-          <Form onSubmit={this.addTask}>
-            <Form.Group controlId="formBasicEmail">
-              <h1>1. Nombra tu meta</h1>
-              <Form.Control size="lg" name="title" placeholder="En pocas palabras, ¿cuál es tu sueño?" onChange={this.handleChange} type="text" value={this.state.title} />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-              <h1>2. Motívate</h1>
-              <Form.Control size="lg" as="textarea" rows="6" name="motive" className="motiveTextArea" onChange={this.handleChange} value={this.state.motive} placeholder="¿Qué te llevó a querer plantearte ésta meta?" />
-            </Form.Group>
-
-            <Button className="addGoalBtn" type="submit">
-              Agregar meta
+      <Goal id = {this.state.id}/>
+    )
+  }else{
+  return (
+    <Container>
+      <Form onSubmit={this.addTask}>
+        <Form.Group  controlId="formBasicEmail">
+          <Form.Label>Nombre de la meta</Form.Label>
+          <Form.Control name="title"  placeholder="Ingresa tu meta" onChange={this.handleChange} type="text" value={this.state.title}/>
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Motivo de la meta</Form.Label>
+          <Form.Control name="motive" onChange={this.handleChange} value={this.state.motive} type="text" placeholder="Ingresa el motivo de tu meta" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Agregar meta
         </Button>
       </Form>
           <Container className="col s7">
-                { this.state.tasks.map(task => {
+                 {this.state.tasks.map(task => {
                     return (
                       <Card key={task._id}>
                         <Card.Img variant="top" src="https://i.imgur.com/5OpceQ1.jpg" />
@@ -181,22 +195,25 @@ constructor() {
                           <Card.Text>
                             {task.motive}
                           </Card.Text>
-                          <Link to="/Goal">
-                            <Button>Ver más</Button>
-                          </Link>
+                          {/* <Link to="/Goal"> */}
+                            <Button onClick={() => this.showGoal(task._id)}>Ver más</Button>
+                          {/* </Link> */}
                           <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
                           <Button onClick={() => this.editTask(task._id)} >Editar</Button>
                         </Card.Body>
                       </Card>
+
                     )
                   })
                 }
+
 
                 </Container>
 
                 </Styles>
     </Container>
   )
+}
 }
 
 }
