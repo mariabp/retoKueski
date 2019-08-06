@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-
-
+import AddGoal from './AddGoal';
 
 const Login = props => {
   const [email, setEmail] = useState("");
@@ -21,26 +20,29 @@ const Login = props => {
         console.log(password);
     };
 
-    const login = async () => {
-       try {
-           await fetch('/api/user/login',
-               {
-                   method: 'POST',
-                   headers: { 'Content-Type': 'application/json' },
-                   body: JSON.stringify({ email, password })
-               }
-           )
+    function login() {
 
-       } catch (err) {
-           console.log(err);
-       }
+		 fetch('/api/user/login',
+			   {
+				   method: 'POST',
+				   headers: { 'Content-Type': 'application/json' },
+				   body: JSON.stringify({ email, password })
+			   }
+		   ).then((response) => {
 
-   };
+			 return response.json();
+
+		   }).then((response) => {
+			 console.log(response);
+			 localStorage.setItem("token", JSON.stringify({token: response}));
+			})
+
+	};
 
 
 
   return(
-
+<div>
     <Form>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Correo electrónico</Form.Label>
@@ -63,11 +65,13 @@ const Login = props => {
                        </Button>
     </Form>
 
+    <AddGoal/>
+    </div>
+
 
 
   )
 
 }
-
 
  export default Login;
