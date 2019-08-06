@@ -14,7 +14,10 @@ constructor() {
   };
   this.handleChange = this.handleChange.bind(this);
   this.addTask = this.addTask.bind(this);
+  this.deleteTask = this.deleteTask.bind(this);
+  this.editTask = this.editTask.bind(this);
 }
+
 
 handleChange(e) {
   const { name, value } = e.target;
@@ -64,7 +67,6 @@ addTask(e) {
 }
 
 deleteTask(id) {
-
     fetch(`/api/goals/${id}`, {
       method: 'DELETE',
       headers: {
@@ -77,8 +79,7 @@ deleteTask(id) {
         console.log(data);
         this.fetchTasks();
       });
-
-}
+  }
 
 editTask(id) {
   fetch(`/api/goals/${id}`)
