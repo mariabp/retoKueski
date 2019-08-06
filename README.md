@@ -1,68 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Weeber - Atrapa, organiza y vuélvelo realidad](https://i.imgur.com/dkaJqnu.jpg)
 
-## Available Scripts
+# Weeber
 
-In the project directory, you can run:
+Las personas cuyo trabajo involucra creatividad muchas veces tienen el problema de encontrarse estancadas. Contrario a lo que mucha gente piensa, las personas creativas no son naranjas a las que uno puede ir y sacar jugo sino más bien son plantas que crecen mejor cuando se les dá su espacio. 
 
-### `npm start`
+Curiosamente, con frecuencia las personas creativas encuentran ideas no trabajando.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Hemos encontrado que la mejor manera de resolver problemas no es pasando horas interminables pegadas a la computadora, sino examinándolos detenidamente y muchas veces, la respuesta nos llega en momentos inesperados, puede ser en la ducha o justo a punto de abordar el autobús. 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Eso nos generó una duda ¿Cómo podemos entonces capturar éstos chispazos de genialidad que surgen sin que estemos en un "Entorno de trabajo"?
 
-### `npm test`
+Así justo es como surge Weeber.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Atrapa ideas en cualquier lugar
 
-### `npm run build`
+Weeber cuenta con la función de guardar ideas, en la que puedes simplemente dejar una nota o todo un texto descriptivo sobre algo que se te ocurrió. Puede ser una idea muy sencilla o todo un plan para tu próximo proyecto.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Conviérte ideas en realidad
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Con la función de metas, Weeber te ayuda a materializar tus ideas en pasos concretos más fáciles de llevar a cabo. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Primero fijas una meta y un plazo a cumplir y después creas tareas que te encaminen a cumplir tu objetivo. ¿Tan fácil? ¡Pues sí! 
 
-### `npm run eject`
+## Reportes de avances
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Una vez que cumplas con las tareas que te propusiste, podrás ver cómo tu porcentaje de completud aumenta.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Gana tótems con tus metas
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+A medida que cumplas metas, desbloquearás tótems. Los tótems son insignias de distinción que te otorgamos por tu avance. Desbloquea todos los tótems y conviértete en Chamán Weeber: Personas soñadoras y perseverantes que no se rinden hasta lograr sus objetivos y que incluso sirven de guía para otros.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## No vuelvas a olvidar un proyecto
 
-## Learn More
+Weeber te mandará emails con la frecuencia que tú elijas para recordar el darle seguimiento a las metas que te propusiste. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Agrega amigos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Con una cuenta de correo electrónico puedes invitar a más personas a tus metas.
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

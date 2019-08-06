@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import DisplayGoals from './DisplayGoals'
 
 const Home = props => {
 
@@ -9,8 +11,14 @@ const Home = props => {
     }
 
     return (
-        <Button onClick={LogOut}>Cerrar sesión</Button>
+      <div>
+        <Link to='/'>
+            <Button onClick={LogOut}>Cerrar sesión</Button>
+        </Link>
+        <DisplayGoals/>
+        </div>
     )
+
 }
 
 export default Home;
