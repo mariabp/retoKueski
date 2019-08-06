@@ -20,6 +20,7 @@ const Styles = styled.div`
     background-color: #ffffff;
     margin: 2rem 1rem 1rem 1rem;
     padding: 1rem;
+    box-shadow: 7px 8px 7px rgba(3, 3, 3, 0.4);
 
     input {
       border-left: none;
@@ -86,6 +87,7 @@ const Login = props => {
     console.log(email);
     console.log(password);
   };
+  
   function login() {
     fetch("/api/user/login", {
       method: "POST",

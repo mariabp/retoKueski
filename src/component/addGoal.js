@@ -1,79 +1,52 @@
-// import React, {useState} from 'react';
-// import {Form, Button} from 'react-bootstrap';
-//
-//
-//
-// const AddGoal = props =>{
-//
-// const [title, setTitle] = useState("");
-// const [motive, setMotive] = useState("");
-// const [date, setDate] = useState("");
-//
-// const handleChange = (event) => {
-//
-//       if (event.target.name === "title") {
-//         console.log(event.target.value);
-//           setTitle(event.target.value);
-//           return;
-//       }
-//       if (event.target.name === "motive") {
-//           setMotive(event.target.value);
-//           return;
-//       }
-//
-//       if (event.target.name === "date") {
-//           setDate(event.target.value);
-//           return;
-//       }
-//
-//   };
-//
-//   function postGoal() {
-//
-//    fetch('/api/goals',
-//        {
-//          method: 'POST',
-//          headers: { 'Content-Type': 'application/json' },
-//          body: JSON.stringify({title, motive, date})
-//        }
-//      ).then((response) => {
-//
-//      return response.json();
-//
-//    })
-//
-// };
-//
-//
-//
-// return(
-//
-//   <Form>
-//     <Form.Group>
-//       <Form.Label>Titulo</Form.Label>
-//       <Form.Control  onChange={handleChange} type="title"  name="title" placeholder="Nombre de la meta" />
-//     </Form.Group>
-//     <Form.Group >
-//       <Form.Label>Motivo</Form.Label>
-//       <Form.Control onChange={handleChange}  type="motive" name="motive" placeholder="Motivo" />
-//     </Form.Group>
-//
-//     <Form.Group >
-//       <Form.Label>Fecha</Form.Label>
-//       <Form.Control onChange={handleChange} type="date" name="date" placeholder="Fecha" />
-//     </Form.Group>
-//     <Button onClick={postGoal} variant="primary" type="submit">
-//       Enviar meta
-//     </Button>
-//
-//   </Form>
-//
-//
-//
-// )
-//
-//
-//
-// }
-//
-//  export default AddGoal;
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import {Circle } from 'rc-progress';
+
+class Example extends Component {
+
+  constructor() {
+      super();
+      this.state = {
+        percent: 0,
+        color: '#A0D85B',
+      };
+      this.increase = this.increase.bind(this);
+
+    }
+
+    componentDidMount() {
+      this.increase();
+    }
+
+    increase() {
+      const colorMap = ['#A0D85B', '#F72525'];
+      const { percent } = this.state;
+      const newPercent = percent + 25;
+
+      if (newPercent == 125) {
+        return;
+      }
+      this.setState({ percent: newPercent,
+        color: colorMap[parseInt (Math.random() * 1, 10)],
+      });
+
+    }
+
+
+    render() {
+      const { percent, color } = this.state;
+      return (
+        <div style={{ margin: 10, width: 200 }}>
+        <h3>Porcentaje de la Meta {percent}%</h3>
+          <Circle strokeWidth="6" percent={percent}  strokeColor={color}/>
+
+          <button type="button" onClick={this.increase}>
+                  Tarea Cumplida
+                </button>
+
+        </div>
+      );
+    }
+
+}
+export default Example;

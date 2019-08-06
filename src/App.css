@@ -8,7 +8,7 @@
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
-    font-style: bold;
+    font-weight: bold;
     margin: 1rem 0 1rem 0;
 }
 
@@ -35,4 +35,23 @@ input {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    width: 100%;
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    border-color: rgba(3, 3, 3, 0.4);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+}
+
+::placeholder{
+    color: rgba(3, 3, 3, 0.4);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
 }
