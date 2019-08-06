@@ -4,6 +4,7 @@ import Register from './component/Register';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import './App.css';
 import Home from './component/Home';
+import Goal from './component/Goal';
 
 class App extends React.Component {
   
@@ -40,6 +41,7 @@ class App extends React.Component {
              <Route exact path="/" render={() => <Login />}/>
             <Route exact path="/Register" render={() => <Register />}/>
             <Route exact path="/Home" render={() => <Home />}/>
+            <Route exact path="/Goal" render={() => <Goal/>}/>
            </Switch>
          </div>
        </BrowserRouter>
