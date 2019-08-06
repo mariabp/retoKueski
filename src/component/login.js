@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+// import AddGoal from './AddGoal';
+// import DisplayGoals from './DisplayGoals';
 
 const Login = props => {
- const [email, setEmail] = useState('');
- const [password, setPassword] = useState('');
- const handleChange = (event) => {
-        if (event.target.name === 'email') {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChange = (event) => {
+        if (event.target.name === "email") {
             setEmail(event.target.value);
         }
-        if (event.target.name === 'password') {
+        if (event.target.name === "password") {
             setPassword(event.target.value);
         }
     };
@@ -50,7 +52,13 @@ const Login = props => {
         </Link>
         </Button>
     </Form>
-    )
+
+    // <AddGoal/>
+
+    // <DisplayGoals/>
+
+  )
 
 }
-export default withRouter(Login);
+
+ export default Login;
