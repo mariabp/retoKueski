@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {Form, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import {FaArrowRight} from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const Styles = styled.div`
@@ -74,44 +74,44 @@ form {
 `
 
 const Login = props => {
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const handleChange = (event) => {
-      if (event.target.name === 'email') {
-          setEmail(event.target.value);
-      }
-      if (event.target.name === 'password') {
-          setPassword(event.target.value);
-      }
-      console.log(email);
-      console.log(password);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleChange = (event) => {
+    if (event.target.name === 'email') {
+      setEmail(event.target.value);
+    }
+    if (event.target.name === 'password') {
+      setPassword(event.target.value);
+    }
+    console.log(email);
+    console.log(password);
   };
-      function login() {
-        fetch('/api/user/login',
-              {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ email, password })
-              }
-          ).then((response) => {
-            return response.json();
-          })
-          .then((response) => {
-            console.log("sesion activa");
-            localStorage.setItem('token', JSON.stringify(response));
-          })
+  function login() {
+    fetch('/api/user/login',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      }
+    ).then((response) => {
+      return response.json();
+    })
+      .then((response) => {
+        console.log("sesion activa");
+        localStorage.setItem('token', JSON.stringify(response));
+      })
   };
-  return(
+  return (
     <React.Fragment>
-    <Styles>
-      <img src="https://i.imgur.com/NtRT2Fy.jpg" alt="Captura tus ideas y conviértelas en metas. Weeber te ayuda a volverlas realidad" className="welcomeImg" />
+      <Styles>
+        <img src="https://i.imgur.com/NtRT2Fy.jpg" alt="Captura tus ideas y conviértelas en metas. Weeber te ayuda a volverlas realidad" className="welcomeImg" />
 
         <p>¿Ya tienes una cuenta?</p>
         <Form>
           <h1>Inicia sesión</h1>
           <Form.Group controlId="formBasicEmail">
 
-            <Form.Control  onChange={handleChange} type="email" name="email" placeholder="E-mail" />
+            <Form.Control onChange={handleChange} type="email" name="email" placeholder="E-mail" />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
 
@@ -119,22 +119,22 @@ const handleChange = (event) => {
           </Form.Group>
 
           <Button onClick={login} variant="primary" type="submit" className="ingresar">
-          <FaArrowRight />
+            <FaArrowRight />
           </Button>
-          </Form>
+        </Form>
 
-          <p className="visita">¿Primera vez que nos visitas?</p>
+        <p className="visita">¿Primera vez que nos visitas?</p>
 
-          <Button className="registro">
-                              <Link to="/Register">
-                                      Crea una cuenta
+        <Button className="registro">
+          <Link to="/Register">
+            Crea una cuenta
 
                               </Link>
-                          </Button>
-        
+        </Button>
 
-    </Styles>
-  </React.Fragment>
+
+      </Styles>
+    </React.Fragment>
   )
 }
 export default Login;
