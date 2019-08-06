@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import DisplayGoals from './displayGoals'
+import DisplayGoals from './displayGoals';
+
 
 const Home = props => {
 
