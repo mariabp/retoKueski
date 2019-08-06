@@ -1,26 +1,10 @@
 import React, { Component } from 'react';
 import {Form, Button, Container, Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
+
 import Goal from './Goal';
 
-class DisplayGoals extends Component{
-
-constructor() {
-  super();
-  this.state = {
-    title: '',
-    motive: '',
-    date: '',
-    _id: '',
-    tasks: [],
-    showingGoal : false
-  };
-  this.handleChange = this.handleChange.bind(this);
-  this.addTask = this.addTask.bind(this);
-  this.deleteTask = this.deleteTask.bind(this);
-  this.editTask = this.editTask.bind(this);
-  this.fetchTasks = this.fetchTasks.bind(this);
-}
 
 const Styles = styled.div`
   form {
@@ -58,11 +42,29 @@ const Styles = styled.div`
   }
 
   .goalsContainer {
-    display: block; 
+    display: block;
     margin: auto;
   }
 
 `
+class DisplayGoals extends Component{
+
+
+constructor() {
+  super();
+  this.state = {
+    title: '',
+    motive: '',
+    date: '',
+    _id: '',
+    tasks: []
+  };
+  this.handleChange = this.handleChange.bind(this);
+  this.addTask = this.addTask.bind(this);
+  this.deleteTask = this.deleteTask.bind(this);
+  this.editTask = this.editTask.bind(this);
+  this.fetchTasks = this.fetchTasks.bind(this);
+}
 
   handleChange(e) {
     const { name, value } = e.target;
@@ -200,10 +202,15 @@ render() {
                           <Button onClick={() => this.editTask(task._id)} >Editar</Button>
                         </Card.Body>
                       </Card>
-                    )}
-                  )
-                    }
+
+                    )
+                  })
+                }
+
+
                 </Container>
+
+                </Styles>
     </Container>
   )
 }
