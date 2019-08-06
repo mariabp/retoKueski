@@ -1,18 +1,29 @@
 import React, {useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 
-function getGoal() {
 
- fetch('/api/goals',
+const DisplayGoals = props => {
+const [mealType, setMealType] = useState("");
+//function getGoal() {
+  const getGoal = async () =>{
+
+ const res = await fetch(`/api/goals`,
      {
        method: 'GET',
-       headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify({title, motive, date})
+       headers: { 'Content-Type': 'application/json' }
      }
-   ).then((response) => {
-
-   return response.json();
-
- })
-
+   )
+  const re =  await res.json();
+  console.log(re);
 };
+
+return(
+  <div>
+  <h1>Aqui son tus metas</h1>
+  <Button  onClick={getGoal}>Click</Button>
+  </div>
+)
+
+
+}
+export default DisplayGoals;

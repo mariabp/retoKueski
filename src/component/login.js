@@ -3,6 +3,7 @@ import {Form, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 import AddGoal from './AddGoal';
+import DisplayGoals from './DisplayGoals';
 
 const Login = props => {
   const [email, setEmail] = useState("");
@@ -66,6 +67,8 @@ const Login = props => {
     </Form>
 
     <AddGoal/>
+
+    <DisplayGoals/>
     </div>
 
 
