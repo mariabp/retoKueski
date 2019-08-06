@@ -110,11 +110,12 @@ fetchTasks() {
 render() {
   return (
     <div>
-      <div >
+      <div>
         <div>
-          <div >
-            <div >
-              <div >
+
+          <div>
+            <div>
+              <div>
                 <form onSubmit={this.addTask}>
                   <div className="row">
                     <div className="input-field col s12">
@@ -134,6 +135,8 @@ render() {
               </div>
             </div>
           </div>
+
+
           <div className="col s7">
             <table>
               <thead>
@@ -143,8 +146,7 @@ render() {
                 </tr>
               </thead>
               <tbody>
-                {
-                  this.state.tasks.map(task => {
+                {this.state.tasks.map(task => {
                     return (
                       <tr key={task._id}>
                         <td>{task.title}</td>
@@ -172,28 +174,4 @@ render() {
 }
 }
 
-// const DisplayGoals = props => {
-// const [mealType, setMealType] = useState("");
-// //function getGoal() {
-//   const getGoal = async () =>{
-//
-//  const res = await fetch(`/api/goals`,
-//      {
-//        method: 'GET',
-//        headers: { 'Content-Type': 'application/json' }
-//      }
-//    )
-//   const re =  await res.json();
-//   console.log(re);
-// };
-//
-// return(
-//   <div>
-//   <h1>Aqui son tus metas</h1>
-//   <Button  onClick={getGoal}>Click</Button>
-//   </div>
-// )
-//
-//
-// }
 export default DisplayGoals;
