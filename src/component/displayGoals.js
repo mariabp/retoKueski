@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Button} from 'react-bootstrap';
+import {Form, Button, Container, Card} from 'react-bootstrap';
 
 class DisplayGoals extends Component{
 
@@ -16,6 +16,7 @@ constructor() {
   this.addTask = this.addTask.bind(this);
   this.deleteTask = this.deleteTask.bind(this);
   this.editTask = this.editTask.bind(this);
+  this.fetchTasks = this.fetchTasks.bind(this);
 }
 
 
@@ -42,7 +43,7 @@ addTask(e) {
     })
       .then(res => res.json())
       .then(data => {
-
+        console.log("addTask",data)
         this.setState({_id: '', title: '', motive: ''});
         this.fetchTasks();
       });
@@ -67,6 +68,7 @@ addTask(e) {
 }
 
 deleteTask(id) {
+  console.log(id)
     fetch(`/api/goals/${id}`, {
       method: 'DELETE',
       headers: {
@@ -78,7 +80,8 @@ deleteTask(id) {
       .then(data => {
         console.log(data);
         this.fetchTasks();
-      });
+      })
+      // .catch(err)
   }
 
 editTask(id) {
@@ -109,91 +112,43 @@ fetchTasks() {
 
 render() {
   return (
-    <div>
-      <div >
-        <div>
-          <div >
-            <div >
-              <div >
-                <form onSubmit={this.addTask}>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Titulo  de la Meta" autoFocus/>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} cols="30" rows="10" placeholder="Motivo de la Meta"></textarea>
-                    </div>
-                  </div>
-
-                  <button type="submit" className="btn light-blue darken-4">
-                    Enviar info
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div className="col s7">
-            <table>
-              <thead>
-                <tr>
-                  <th>Titulo</th>
-                  <th>Motivo</th>
-                </tr>
-              </thead>
-              <tbody>
+    <Container>
+      <Form onSubmit={this.addTask}>
+        <Form.Group  controlId="formBasicEmail">
+          <Form.Label>Nombre de la meta</Form.Label>
+          <Form.Control name="title"  placeholder="Ingresa tu meta" onChange={this.handleChange} type="text" value={this.state.title}/>
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Motivo de la meta</Form.Label>
+          <Form.Control name="motive" onChange={this.handleChange} value={this.state.motive} type="text" placeholder="Ingresa el motivo de tu meta" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Agregar meta
+        </Button>
+      </Form>
+          <Container className="col s7">
                 {
                   this.state.tasks.map(task => {
                     return (
-                      <tr key={task._id}>
-                        <td>{task.title}</td>
-                        <td>{task.motive}</td>
-                        <td>
-                          <button onClick={() => this.deleteTask(task._id)}>
-                            <i>delete</i>
-                          </button>
-                          <button onClick={() => this.editTask(task._id)}>
-                            <i>edit</i>
-                          </button>
-                        </td>
-                      </tr>
+                      <Card key={task._id}>
+                        <Card.Img variant="top" src="holder.js/100px180" />
+                        <Card.Body>
+                          <Card.Title>{task.title}</Card.Title>
+                          <Card.Text>
+                            {task.motive}
+                          </Card.Text>
+                          <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
+                          <Button onClick={() => this.editTask(task._id)} >Editar</Button>
+                        </Card.Body>
+                      </Card>
                     )
                   })
                 }
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </div>
+                </Container>
+    </Container>
   )
 }
+
 }
 
-// const DisplayGoals = props => {
-// const [mealType, setMealType] = useState("");
-// //function getGoal() {
-//   const getGoal = async () =>{
-//
-//  const res = await fetch(`/api/goals`,
-//      {
-//        method: 'GET',
-//        headers: { 'Content-Type': 'application/json' }
-//      }
-//    )
-//   const re =  await res.json();
-//   console.log(re);
-// };
-//
-// return(
-//   <div>
-//   <h1>Aqui son tus metas</h1>
-//   <Button  onClick={getGoal}>Click</Button>
-//   </div>
-// )
-//
-//
-// }
 export default DisplayGoals;
