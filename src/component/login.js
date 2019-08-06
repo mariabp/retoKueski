@@ -132,9 +132,9 @@ const Login = props => {
                               </Link>
         </Button>
 
-
       </Styles>
     </React.Fragment>
   )
 }
-export default Login;
+
+ export default Login;
