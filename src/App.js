@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './component/Login'
+import Login from './component/login'
 import Register from './component/Register';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import './App.css';
@@ -13,12 +13,12 @@ class App extends React.Component {
       user: false
     }
   }
-  
+
   componentWillUpdate(){
     const token = localStorage.getItem('token');
     this.authListener(token);
   }
-  
+
   authListener = (token) => {
     console.log(token)
       if(token){

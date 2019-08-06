@@ -56,7 +56,7 @@ addTask(e) {
       .then(data => {
         console.log(data);
         window.M.toast({html: 'Task Saved'});
-        this.setState({title: '', description: ''});
+        this.setState({title: '', motive: ''});
         this.fetchTasks();
       })
       .catch(err => console.error(err));
@@ -89,7 +89,7 @@ editTask(id) {
       console.log(data);
       this.setState({
         title: data.title,
-        description: data.description,
+        motive: data.motive,
         _id: data._id
       });
     });
@@ -111,15 +111,6 @@ fetchTasks() {
 render() {
   return (
     <div>
-      {/* NAVIGATION */}
-      <nav className="light-blue darken-4">
-        <div className="container">
-          <div className="nav-wrapper">
-            <a href="#" className="brand-logo">MERN Stack</a>
-          </div>
-        </div>
-      </nav>
-
       <div className="container">
         <div className="row">
           <div className="col s5">
@@ -133,12 +124,12 @@ render() {
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <textarea name="description" onChange={this.handleChange} value={this.state.description} cols="30" rows="10" placeholder="Task Description" className="materialize-textarea"></textarea>
+                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} cols="30" rows="10" placeholder="Task Description" className="materialize-textarea"></textarea>
                     </div>
                   </div>
 
                   <button type="submit" className="btn light-blue darken-4">
-                    Send
+                    Enviar info
                   </button>
                 </form>
               </div>
@@ -148,8 +139,8 @@ render() {
             <table>
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Description</th>
+                  <th>Titulo</th>
+                  <th>Motivo</th>
                 </tr>
               </thead>
               <tbody>
@@ -158,7 +149,7 @@ render() {
                     return (
                       <tr key={task._id}>
                         <td>{task.title}</td>
-                        <td>{task.description}</td>
+                        <td>{task.motive}</td>
                         <td>
                           <button onClick={() => this.deleteTask(task._id)} className="btn light-blue darken-4">
                             <i className="material-icons">delete</i>
