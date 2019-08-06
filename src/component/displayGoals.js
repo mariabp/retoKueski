@@ -14,7 +14,10 @@ constructor() {
   };
   this.handleChange = this.handleChange.bind(this);
   this.addTask = this.addTask.bind(this);
+  this.deleteTask = this.deleteTask.bind(this);
+  this.editTask = this.editTask.bind(this);
 }
+
 
 handleChange(e) {
   const { name, value } = e.target;
@@ -30,7 +33,7 @@ addTask(e) {
       method: 'PUT',
       body: JSON.stringify({
         title: this.state.title,
-        description: this.state.description
+        motive: this.state.motive
       }),
       headers: {
         'Accept': 'application/json',
@@ -40,7 +43,7 @@ addTask(e) {
       .then(res => res.json())
       .then(data => {
 
-        this.setState({_id: '', title: '', description: ''});
+        this.setState({_id: '', title: '', motive: ''});
         this.fetchTasks();
       });
   } else {
@@ -55,7 +58,6 @@ addTask(e) {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        window.M.toast({html: 'Task Saved'});
         this.setState({title: '', motive: ''});
         this.fetchTasks();
       })
@@ -64,23 +66,21 @@ addTask(e) {
 
 }
 
-// deleteTask(id) {
-//   if(confirm('Are you sure you want to delete it?')) {
-//     fetch(`/api/goals/${id}`, {
-//       method: 'DELETE',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         console.log(data);
-//         M.toast({html: 'Task deleted'});
-//         this.fetchTasks();
-//       });
-//   }
-// }
+deleteTask(id) {
+    fetch(`/api/goals/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.fetchTasks();
+      });
+  }
+
 
 editTask(id) {
   fetch(`/api/goals/${id}`)
@@ -151,11 +151,11 @@ render() {
                         <td>{task.title}</td>
                         <td>{task.motive}</td>
                         <td>
-                          <button onClick={() => this.deleteTask(task._id)} className="btn light-blue darken-4">
-                            <i className="material-icons">delete</i>
+                          <button onClick={() => this.deleteTask(task._id)}>
+                            delete
                           </button>
-                          <button onClick={() => this.editTask(task._id)} className="btn light-blue darken-4" style={{margin: '4px'}}>
-                            <i className="material-icons">edit</i>
+                          <button onClick={() => this.editTask(task._id)}>
+                            edit
                           </button>
                         </td>
                       </tr>

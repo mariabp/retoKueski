@@ -6,14 +6,15 @@ import './App.css';
 import Home from './component/Home';
 
 class App extends React.Component {
-
+  
+  
   constructor(){
     super();
     this.state = {
       user: false
     }
   }
-
+  
   componentWillUpdate(){
     const token = localStorage.getItem('token');
     this.authListener(token);
