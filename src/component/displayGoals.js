@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Form, Button, Container, Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import Goal from './Goal';
 
 class DisplayGoals extends Component{
 
@@ -11,7 +12,8 @@ constructor() {
     motive: '',
     date: '',
     _id: '',
-    tasks: []
+    tasks: [],
+    showingGoal : false
   };
   this.handleChange = this.handleChange.bind(this);
   this.addTask = this.addTask.bind(this);
@@ -102,6 +104,13 @@ componentDidMount() {
   this.fetchTasks();
 }
 
+showGoal = (cardId) =>{
+  this.setState({ 
+    showingGoal : !this.state.showingGoal,
+    id : cardId
+   })
+}
+
 fetchTasks() {
   fetch('/api/goals')
     .then(res => res.json())
@@ -112,6 +121,12 @@ fetchTasks() {
 }
 
 render() {
+  console.log("estado de showing",this.state.id)
+  if(this.state.showingGoal){
+    return (
+      <Goal id = {this.state.id}/>
+    )
+  }else{
   return (
     <Container>
       <Form onSubmit={this.addTask}>
@@ -128,7 +143,7 @@ render() {
         </Button>
       </Form>
           <Container className="col s7">
-                { this.state.tasks.map(task => {
+                 {this.state.tasks.map(task => {
                     return (
                       <Card key={task._id}>
                         <Card.Img variant="top" src="holder.js/100px180" />
@@ -137,19 +152,20 @@ render() {
                           <Card.Text>
                             {task.motive}
                           </Card.Text>
-                          <Link to="/Goal">
-                            <Button>Ver más</Button>
-                          </Link>
+                          {/* <Link to="/Goal"> */}
+                            <Button onClick={() => this.showGoal(task._id)}>Ver más</Button>
+                          {/* </Link> */}
                           <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
                           <Button onClick={() => this.editTask(task._id)} >Editar</Button>
                         </Card.Body>
                       </Card>
-                    )
-                  })
-                }
+                    )}
+                  )
+                    }
                 </Container>
     </Container>
   )
+}
 }
 
 }
