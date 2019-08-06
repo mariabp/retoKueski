@@ -84,26 +84,22 @@ const Register = props => {
         if (event.target.name === "password") {
             setPassword(event.target.value);
         }
-        console.log(email);
-        console.log(password);
     };
 
-    const register = async () => {
-       try {
-           await fetch('/api/user/register',
-               {
-                   method: 'POST',
-                   headers: { 'Content-Type': 'application/json' },
-                   body: JSON.stringify({email, password })
-               }
-           )
-       } catch (err) {
-           console.log(err);
-       }
-   };
-
-
-
+    function register() {
+      fetch("/api/user/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          console.log("sesion activa");
+          localStorage.setItem("token", JSON.stringify(response));
+        });
+    }
   return(
     <React.Fragment>
       <Styles>
@@ -118,9 +114,11 @@ const Register = props => {
 
           <Form.Control onChange={handleChange} type="password" name="password" placeholder="Contraseña" />
         </Form.Group>
-        <Button onClick={register} variant="primary" type="submit" className="registro">
+        <Link>
+        <Button onClick={register} variant="primary" className="registro">
           <FaArrowRight />
         </Button>
+        </Link>
       </Form>
 
       <p className="space">.</p>
