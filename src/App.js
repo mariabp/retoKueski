@@ -2,11 +2,8 @@ import React from 'react';
 import Login from './component/login';
 import Register from './component/Register';
 import {HashRouter, Route, Switch} from "react-router-dom";
-<<<<<<< HEAD
 import './App.css';
-=======
 import Home from './component/Home';
->>>>>>> c88f15030b97257d71f5c390de3d87dfaaff9e2f
 
 const App = ()=>{
   // let currentUser = localStorage.getItem('token');
