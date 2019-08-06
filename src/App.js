@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './component/Login';
+import Login from './component/login';
 import Register from './component/Register';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Home from './component/Home';
