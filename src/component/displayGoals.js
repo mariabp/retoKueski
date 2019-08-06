@@ -117,12 +117,12 @@ render() {
                 <form onSubmit={this.addTask}>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Task Title" autoFocus/>
+                      <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Titulo  de la Meta" autoFocus/>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} cols="30" rows="10" placeholder="Task Description" className="materialize-textarea"></textarea>
+                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} cols="30" rows="10" placeholder="Motivo de la Meta"></textarea>
                     </div>
                   </div>
 
