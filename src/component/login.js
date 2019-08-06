@@ -62,7 +62,7 @@ form {
 
 .registro {
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
   background-color: #F72525;
   padding: 20px;
