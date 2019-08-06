@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Form, Button, Container, Card} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class DisplayGoals extends Component{
 
@@ -127,8 +128,7 @@ render() {
         </Button>
       </Form>
           <Container className="col s7">
-                {
-                  this.state.tasks.map(task => {
+                { this.state.tasks.map(task => {
                     return (
                       <Card key={task._id}>
                         <Card.Img variant="top" src="holder.js/100px180" />
@@ -137,6 +137,9 @@ render() {
                           <Card.Text>
                             {task.motive}
                           </Card.Text>
+                          <Link to="/Goal">
+                            <Button>Ver más</Button>
+                          </Link>
                           <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
                           <Button onClick={() => this.editTask(task._id)} >Editar</Button>
                         </Card.Body>
