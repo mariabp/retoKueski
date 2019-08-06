@@ -7,6 +7,11 @@ import styled from 'styled-components';
 const Styles = styled.div`
 background-color: #f1f1f1;
 
+.welcomeImg{
+  display: block;
+  margin: auto;
+}
+
 p {
   margin: 2rem 1rem 1rem 1rem;
 }
@@ -58,7 +63,7 @@ form {
 
 .login {
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
   background-color: #F72525;
   padding: 20px;

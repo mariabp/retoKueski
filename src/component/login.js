@@ -60,18 +60,18 @@ const Styles = styled.div`
     margin-top: 8rem;
   }
 
-  .registro {
-    border: none;
-    font-size: 1.5rem;
-    color: white;
-    background-color: #f72525;
-    padding: 20px;
-    text-align: center;
-    display: block;
-    margin: auto;
-    border-radius: 3rem;
-  }
-`;
+.registro {
+  border: none;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #F72525;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  border-radius: 3rem;
+}
+`
 
 const Login = props => {
   const [email, setEmail] = useState("");
