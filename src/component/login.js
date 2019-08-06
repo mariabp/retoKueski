@@ -132,10 +132,13 @@ const Login = props => {
                               </Link>
         </Button>
 
-
       </Styles>
     </React.Fragment>
   )
 }
 
+<<<<<<< HEAD
 export default Login;
+=======
+ export default Login;
+>>>>>>> ebb17acdc8e7ca500eda789f763584b8f8bce307
