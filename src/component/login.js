@@ -1,77 +1,140 @@
-import React, {useState} from 'react';
-import {Form, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import AddGoal from './AddGoal';
-import DisplayGoals from './DisplayGoals';
+import React , { useState } from 'react';
+import { Form , Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
+import styled from 'styled-components';
+
+const Styles = styled.div`
+background-color: #f1f1f1;
+
+.welcomeImg{
+  display: block;
+  margin: auto;
+}
+
+p {
+  margin: 2rem 1rem 1rem 1rem;
+}
+
+form {
+  background-color: #FFFFFF;
+  margin: 2rem 1rem 1rem 1rem;
+  padding: 1rem;
+
+  input {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom-width: 1px;
+    border-color: rgba(3, 3, 3, 0.4);
+
+    ::placeholder{
+      color: rgba(3, 3, 3, 0.4)
+    }
+  }
+
+  h1 {
+    background-color: #FFFFFF;
+    font-style: bold;
+    color: #707070;
+  }
+
+  .form-group {
+    background-color: #FFFFFF;
+    text-align: center;
+  }
+}
+
+.ingresar {
+  border: none;
+  float: right;
+  color: white;
+  font-size: 2rem;
+  background-color: #F72525;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3rem;
+}
+
+.visita {
+  margin-top: 8rem;
+}
+
+.registro {
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #F72525;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  border-radius: 3rem;
+}
+`
 
 const Login = props => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleChange = (event) => {
-        if (event.target.name === "email") {
-            setEmail(event.target.value);
-        }
-        if (event.target.name === "password") {
-            setPassword(event.target.value);
-        }
+    if (event.target.name === 'email') {
+      setEmail(event.target.value);
+    }
+    if (event.target.name === 'password') {
+      setPassword(event.target.value);
+    }
+    console.log(email);
+    console.log(password);
+  };
+  function login() {
+    fetch('/api/user/login',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      }
+    ).then((response) => {
+      return response.json();
+    })
+      .then((response) => {
+        console.log("sesion activa");
+        localStorage.setItem('token', JSON.stringify(response));
+      })
+  };
+  return (
+    <React.Fragment>
+      <Styles>
+        <img src="https://i.imgur.com/NtRT2Fy.jpg" alt="Captura tus ideas y conviértelas en metas. Weeber te ayuda a volverlas realidad" className="welcomeImg" />
 
-        console.log(email);
-        console.log(password);
-    };
+        <p>¿Ya tienes una cuenta?</p>
+        <Form>
+          <h1>Inicia sesión</h1>
+          <Form.Group controlId="formBasicEmail">
 
-    function login() {
+            <Form.Control onChange={handleChange} type="email" name="email" placeholder="E-mail" />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
 
-		 fetch('/api/user/login',
-			   {
-				   method: 'POST',
-				   headers: { 'Content-Type': 'application/json' },
-				   body: JSON.stringify({ email, password })
-			   }
-		   ).then((response) => {
+            <Form.Control onChange={handleChange} type="password" name="password" placeholder="Contraseña" />
+          </Form.Group>
 
-			 return response.json();
+          <Button onClick={login} variant="primary" type="submit" className="ingresar">
+            <FaArrowRight />
+          </Button>
+        </Form>
 
-		   }).then((response) => {
-			 console.log(response);
-			 localStorage.setItem("token", JSON.stringify({token: response}));
-			})
+        <p className="visita">¿Primera vez que nos visitas?</p>
 
-	};
+        <Button className="registro">
+          <Link to="/Register">
+            Crea una cuenta
 
+                              </Link>
+        </Button>
 
-
-  return(
-<div>
-    <Form>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Correo electrónico</Form.Label>
-        <Form.Control  onChange={handleChange} type="email" name="email" placeholder="Ingresa tu correo" />
-      </Form.Group>
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Contraseña</Form.Label>
-        <Form.Control onChange={handleChange} type="password" name="password" placeholder="Ingresa tu contraseña" />
-      </Form.Group>
-      <Button onClick={login} variant="primary" type="submit">
-        Ingresar
-      </Button>
-
-      <Button className="form-group text-center">
-                           <Link to="/Register">
-                                   No tienes una cuenta
-                                   ¡Registrate!
-
-                           </Link>
-                       </Button>
-    </Form>
-
-    <AddGoal/>
-
-    <DisplayGoals/>
-    </div>
-
+      </Styles>
+    </React.Fragment>
   )
-
 }
 
  export default Login;
