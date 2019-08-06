@@ -6,10 +6,6 @@ import styled from 'styled-components';
 const Styles = styled.div`
 
 `
-
-
-
-
 const Register = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 const Home = props => {
 
@@ -9,7 +10,9 @@ const Home = props => {
     }
 
     return (
-        <Button onClick={LogOut}>Cerrar sesión</Button>
+        <Link to='/'>
+            <Button onClick={LogOut}>Cerrar sesión</Button>
+        </Link>
     )
 }
 
