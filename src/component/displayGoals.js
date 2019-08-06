@@ -81,7 +81,6 @@ deleteTask(id) {
       });
   }
 
-
 editTask(id) {
   fetch(`/api/goals/${id}`)
     .then(res => res.json())
@@ -111,20 +110,20 @@ fetchTasks() {
 render() {
   return (
     <div>
-      <div className="container">
-        <div className="row">
-          <div className="col s5">
-            <div className="card">
-              <div className="card-content">
+      <div >
+        <div>
+          <div >
+            <div >
+              <div >
                 <form onSubmit={this.addTask}>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Task Title" autoFocus/>
+                      <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Titulo  de la Meta" autoFocus/>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} cols="30" rows="10" placeholder="Task Description" className="materialize-textarea"></textarea>
+                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} cols="30" rows="10" placeholder="Motivo de la Meta"></textarea>
                     </div>
                   </div>
 
@@ -152,10 +151,10 @@ render() {
                         <td>{task.motive}</td>
                         <td>
                           <button onClick={() => this.deleteTask(task._id)}>
-                            delete
+                            <i>delete</i>
                           </button>
                           <button onClick={() => this.editTask(task._id)}>
-                            edit
+                            <i>edit</i>
                           </button>
                         </td>
                       </tr>
