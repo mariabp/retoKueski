@@ -65,9 +65,7 @@ const Login = props => {
                        </Button>
     </Form>
 
-    <AddGoal/>
-
-    <DisplayGoals/>
+  
     </div>
 
   )
