@@ -110,31 +110,16 @@ fetchTasks() {
 render() {
   return (
     <div>
-      <div >
-        <div>
-          <div >
-            <div >
-              <div >
-                <form onSubmit={this.addTask}>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Titulo  de la Meta" autoFocus/>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} cols="30" rows="10" placeholder="Motivo de la Meta"></textarea>
-                    </div>
-                  </div>
 
-                  <button type="submit" className="btn light-blue darken-4">
+                <Form onSubmit={this.addTask}>
+                      <input name="title" onChange={this.handleChange} value={this.state.title} type="text" placeholder="Titulo  de la Meta" autoFocus/>
+                      <textarea name="motive" onChange={this.handleChange} value={this.state.motive} placeholder="Motivo de la Meta"></textarea>
+                  <Button type="submit">
                     Enviar info
-                  </button>
-                </form>
+                  </Button>
+                </Form>
               </div>
-            </div>
-          </div>
-          <div className="col s7">
+
             <table>
               <thead>
                 <tr>
@@ -150,12 +135,12 @@ render() {
                         <td>{task.title}</td>
                         <td>{task.motive}</td>
                         <td>
-                          <button onClick={() => this.deleteTask(task._id)}>
+                          <Button onClick={() => this.deleteTask(task._id)}>
                             <i>delete</i>
-                          </button>
-                          <button onClick={() => this.editTask(task._id)}>
+                          </Button>
+                          <Button onClick={() => this.editTask(task._id)}>
                             <i>edit</i>
-                          </button>
+                          </Button>
                         </td>
                       </tr>
                     )
@@ -165,10 +150,9 @@ render() {
             </table>
           </div>
         </div>
-      </div>
 
-    </div>
   )
+}
 }
 }
 
